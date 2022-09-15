@@ -1,6 +1,5 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-## SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ####################################################################################
 
 # Assumes this file is in library/scripts/library.mk
@@ -28,7 +27,6 @@ CLEAN_TARGET += *.hw
 CLEAN_TARGET += *.sim
 CLEAN_TARGET += .Xil
 CLEAN_TARGET += .timestamp_intel
-CLEAN_TARGET += *.hbs
 
 GENERIC_DEPS += $(HDL_LIBRARY_PATH)scripts/adi_env.tcl
 

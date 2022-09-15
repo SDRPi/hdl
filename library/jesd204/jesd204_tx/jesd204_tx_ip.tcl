@@ -50,19 +50,13 @@ adi_ip_files jesd204_tx [list \
   "jesd204_tx_lane.v" \
   "jesd204_tx_lane_64b.v" \
   "jesd204_tx_header.v" \
-  "jesd204_tx_gearbox.v" \
   "jesd204_tx_ctrl.v" \
   "jesd204_tx_constr.ttcl" \
-  "jesd204_tx_ooc.ttcl" \
-  "../../common/ad_upack.v" \
-  "jesd204_tx.v" \
-  "bd/bd.tcl"
+  "jesd204_tx.v"
 ]
 
 adi_ip_properties_lite jesd204_tx
 adi_ip_ttcl jesd204_tx "jesd204_tx_constr.ttcl"
-adi_ip_ttcl jesd204_tx "jesd204_tx_ooc.ttcl"
-adi_ip_bd jesd204_tx "bd/bd.tcl"
 
 adi_ip_add_core_dependencies { \
   analog.com:user:jesd204_common:1.0 \
@@ -97,20 +91,17 @@ adi_add_bus "tx_cfg" "slave" \
   { \
     { "cfg_lanes_disable" "lanes_disable" } \
     { "cfg_links_disable" "links_disable" } \
-    { "cfg_octets_per_multiframe" "octets_per_multiframe" } \
+    { "cfg_beats_per_multiframe" "beats_per_multiframe" } \
     { "cfg_octets_per_frame" "octets_per_frame" } \
+    { "cfg_lmfc_offset" "lmfc_offset" } \
+    { "cfg_sysref_oneshot" "sysref_oneshot" } \
+    { "cfg_sysref_disable" "sysref_disable" } \
     { "cfg_continuous_cgs" "continuous_cgs" } \
     { "cfg_continuous_ilas" "continuous_ilas" } \
     { "cfg_skip_ilas" "skip_ilas" } \
     { "cfg_mframes_per_ilas" "mframes_per_ilas" } \
     { "cfg_disable_char_replacement" "disable_char_replacement" } \
     { "cfg_disable_scrambler" "disable_scrambler" } \
-    { "device_cfg_octets_per_multiframe" "device_octets_per_multiframe" } \
-    { "device_cfg_octets_per_frame" "device_octets_per_frame" } \
-    { "device_cfg_beats_per_multiframe" "device_beats_per_multiframe" } \
-    { "device_cfg_lmfc_offset" "device_lmfc_offset" } \
-    { "device_cfg_sysref_oneshot" "device_sysref_oneshot" } \
-    { "device_cfg_sysref_disable" "device_sysref_disable" } \
   }
 
 adi_add_bus "tx_ilas_config" "master" \
@@ -126,8 +117,8 @@ adi_add_bus "tx_event" "master" \
   "analog.com:interface:jesd204_tx_event_rtl:1.0" \
   "analog.com:interface:jesd204_tx_event:1.0" \
   { \
-    { "device_event_sysref_alignment_error" "sysref_alignment_error" } \
-    { "device_event_sysref_edge" "sysref_edge" } \
+    { "event_sysref_alignment_error" "sysref_alignment_error" } \
+    { "event_sysref_edge" "sysref_edge" } \
   }
 
 adi_add_bus "tx_status" "master" \
@@ -136,9 +127,6 @@ adi_add_bus "tx_status" "master" \
   { \
     { "status_state" "state" } \
     { "status_sync" "sync" } \
-    { "status_synth_params0" "synth_params0" } \
-    { "status_synth_params1" "synth_params1" } \
-    { "status_synth_params2" "synth_params2" } \
   }
 
 adi_add_bus "tx_ctrl" "slave" \
@@ -148,9 +136,8 @@ adi_add_bus "tx_ctrl" "slave" \
     { "ctrl_manual_sync_request" "manual_sync_request" } \
   }
 
-adi_add_bus_clock "clk" "tx_cfg:tx_ilas_config:tx_event:tx_status:tx_ctrl" "reset"
-
-adi_add_bus_clock "device_clk" "tx_data" "device_reset"
+adi_add_bus_clock "clk" "tx_data:tx_cfg:tx_ilas_config:tx_event:tx_status:tx_ctrl" \
+  "reset"
 
 adi_set_bus_dependency "tx_ilas_config" "tx_ilas_config" \
 	"(spirit:decode(id('MODELPARAM_VALUE.LINK_MODE')) = 1)"
@@ -183,7 +170,7 @@ set_property -dict [list \
 # Data width selection
 set param [ipx::get_user_parameters DATA_PATH_WIDTH -of_objects $cc]
 set_property -dict [list \
-  enablement_tcl_expr {$LINK_MODE==1} \
+  enablement_value false \
   value_tcl_expr {expr $LINK_MODE*4} \
 ] $param
 
@@ -198,17 +185,6 @@ set_property -dict [list \
   widget {checkBox} \
   show_label true \
 ] $param
-
-
-set clk_group [ipgui::add_group -name {Clock Domain Configuration} -component $cc \
-    -parent $page0 -display_name {Clock Domain Configuration}]
-
-set p [ipgui::get_guiparamspec -name "ASYNC_CLK" -component $cc]
-ipgui::move_param -component $cc -order 0 $p -parent $clk_group
-set_property -dict [list \
-  "display_name" "Link and Device Clock Asynchronous" \
-  "widget" "checkBox" \
-] $p
 
 ipx::create_xgui_files [ipx::current_core]
 ipx::save_core [ipx::current_core]

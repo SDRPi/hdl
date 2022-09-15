@@ -48,32 +48,35 @@ module align_mux #(
   parameter DATA_PATH_WIDTH = 4
 ) (
   input clk,
-  input [2:0] align,
+  input [1:0] align,
   input [DATA_PATH_WIDTH*8-1:0] in_data,
   input [DATA_PATH_WIDTH-1:0] in_charisk,
-  output [DATA_PATH_WIDTH*8-1:0] out_data,
-  output [DATA_PATH_WIDTH-1:0] out_charisk
+  output reg [DATA_PATH_WIDTH*8-1:0] out_data,
+  output reg [DATA_PATH_WIDTH-1:0] out_charisk
 );
 
-localparam DPW_LOG2 = DATA_PATH_WIDTH == 8 ? 3 : DATA_PATH_WIDTH == 4 ? 2 : 1;
-
-wire [DPW_LOG2-1:0]                align_int;
-reg  [DATA_PATH_WIDTH*8-1:0]       in_data_d1;
-reg  [DATA_PATH_WIDTH-1:0]         in_charisk_d1;
-wire [(DATA_PATH_WIDTH*8*2)-1:0]   data;
-wire [(DATA_PATH_WIDTH*2)-1:0]     charisk;
+reg [DATA_PATH_WIDTH*8-1:0] in_data_d1;
+reg [DATA_PATH_WIDTH-1:0] in_charisk_d1;
 
 always @(posedge clk) begin
   in_data_d1 <= in_data;
   in_charisk_d1 <= in_charisk;
 end
 
-assign data = {in_data, in_data_d1};
-assign charisk = {in_charisk, in_charisk_d1};
+always @(*) begin
+  case (align)
+  'h0: out_data = in_data_d1;
+  'h1: out_data = {in_data[7:0],in_data_d1[31:8]};
+  'h2: out_data = {in_data[15:0],in_data_d1[31:16]};
+  'h3: out_data = {in_data[23:0],in_data_d1[31:24]};
+  endcase
 
-assign align_int = align[DPW_LOG2-1:0];
-
-assign out_data = data[align_int*8 +: (DATA_PATH_WIDTH*8)];
-assign out_charisk = charisk[align_int +: DATA_PATH_WIDTH];
+  case (align)
+  'h0: out_charisk = in_charisk_d1;
+  'h1: out_charisk = {in_charisk[0:0],in_charisk_d1[3:1]};
+  'h2: out_charisk = {in_charisk[1:0],in_charisk_d1[3:2]};
+  'h3: out_charisk = {in_charisk[2:0],in_charisk_d1[3:3]};
+  endcase
+end
 
 endmodule

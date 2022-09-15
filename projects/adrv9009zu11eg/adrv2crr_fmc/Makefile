@@ -1,6 +1,5 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-### SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ## Auto-generated, do not modify!
 ####################################################################################
 
@@ -11,7 +10,6 @@ M_DEPS += ../common/adrv9009zu11eg_constr.xdc
 M_DEPS += ../common/adrv9009zu11eg_bd.tcl
 M_DEPS += ../common/adrv2crr_fmc_constr.xdc
 M_DEPS += ../common/adrv2crr_fmc_bd.tcl
-M_DEPS += ../../scripts/adi_pd.tcl
 M_DEPS += ../../../library/jesd204/scripts/jesd204.tcl
 M_DEPS += ../../../library/common/ad_iobuf.v
 

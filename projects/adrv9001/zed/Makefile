@@ -1,6 +1,5 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-### SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ## Auto-generated, do not modify!
 ####################################################################################
 
@@ -8,7 +7,6 @@ PROJECT_NAME := adrv9001_zed
 
 M_DEPS += cmos_constr.xdc
 M_DEPS += ../common/adrv9001_bd.tcl
-M_DEPS += ../../scripts/adi_pd.tcl
 M_DEPS += ../../common/zed/zed_system_constr.xdc
 M_DEPS += ../../common/zed/zed_system_bd.tcl
 M_DEPS += ../../../library/common/ad_iobuf.v

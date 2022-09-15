@@ -1,13 +1,10 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-### SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ## Auto-generated, do not modify!
 ####################################################################################
 
 LIBRARY_NAME := ad_ip_jesd204_tpl_dac
 
-GENERIC_DEPS += ../../common/ad_mux.v
-GENERIC_DEPS += ../../common/ad_mux_core.v
 GENERIC_DEPS += ../../common/ad_dds.v
 GENERIC_DEPS += ../../common/ad_dds_1.v
 GENERIC_DEPS += ../../common/ad_dds_2.v

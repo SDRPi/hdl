@@ -37,7 +37,6 @@
 
 module adrv9001_aligner8 (
   input             clk,
-  input             rst,
   input       [7:0] idata,
   input             ivalid,
   input       [7:0] strobe,
@@ -49,9 +48,7 @@ module adrv9001_aligner8 (
   reg       ivalid_d = 'b0;
 
   always @(posedge clk) begin
-    if (rst) begin
-      idata_d <= 'h0;
-    end else if (ivalid) begin
+    if (ivalid) begin
       idata_d <= idata;
     end
     ivalid_d <= ivalid;
@@ -59,9 +56,7 @@ module adrv9001_aligner8 (
 
   reg [2:0] phase = 'h0;
   always @(posedge clk) begin
-    if (rst) begin
-      phase <= 0;
-    end if (ivalid) begin
+    if (ivalid) begin
       if ((strobe != 'b1111_1111) && (strobe != 'b0000_0000)) begin
         casex (strobe)
           'b1xxx_xxxx : phase <= 0;

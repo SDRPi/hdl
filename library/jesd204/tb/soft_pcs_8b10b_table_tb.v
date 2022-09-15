@@ -104,8 +104,7 @@ module soft_pcs_8b10b_table_tb;
     .in_char(encoder_char),
     .in_charisk(encoder_charisk),
     .in_disparity(encoder_disparity),
-    .out_char(encoder_raw),
-    .out_disparity()
+    .out_char(encoder_raw)
   );
 
   always @(posedge clk) begin
@@ -133,8 +132,7 @@ module soft_pcs_8b10b_table_tb;
     .out_charisk(decoder_charisk),
 
     .in_disparity(decoder_disparity),
-    .out_disparity(decoder_disparity_s),
-    .out_disperr()
+    .out_disparity(decoder_disparity_s)
   );
 
   wire decoder_should_be_in_table = valid_table[decoder_raw];

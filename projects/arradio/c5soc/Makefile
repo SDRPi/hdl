@@ -1,13 +1,12 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-### SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ## Auto-generated, do not modify!
 ####################################################################################
 
 PROJECT_NAME := arradio_c5soc
 
 M_DEPS += ../common/arradio_qsys.tcl
-M_DEPS += ../../scripts/adi_pd.tcl
+M_DEPS += ../../scripts/adi_pd_intel.tcl
 M_DEPS += ../../common/c5soc/c5soc_system_qsys.tcl
 M_DEPS += ../../common/c5soc/c5soc_system_assign.tcl
 

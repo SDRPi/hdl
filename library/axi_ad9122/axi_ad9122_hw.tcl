@@ -1,5 +1,5 @@
 
-package require qsys 14.0
+package require qsys
 package require quartus::device
 
 source ../scripts/adi_env.tcl

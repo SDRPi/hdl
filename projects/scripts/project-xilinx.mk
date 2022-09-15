@@ -1,6 +1,5 @@
 ####################################################################################
-## Copyright (c) 2018 -2021 Analog Devices, Inc.
-## SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ####################################################################################
 
 # Assumes this file is in prpojects/scripts/project-xilinx.mk
@@ -27,8 +26,6 @@ CLEAN_TARGET += *.ip_user_files
 CLEAN_TARGET += *.str
 CLEAN_TARGET += mem_init_sys.txt
 CLEAN_TARGET += *.csv
-CLEAN_TARGET += *.hbs
-CLEAN_TARGET += *.gen
 
 # Common dependencies that all projects have
 M_DEPS += system_project.tcl

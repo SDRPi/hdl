@@ -39,10 +39,10 @@ module axi_xcvrlb #(
 
   // parameters
 
-  parameter   integer CPLL_FBDIV = 1,
-  parameter   integer CPLL_FBDIV_4_5 = 5,
+  parameter   CPLL_FBDIV = 1,
+  parameter   CPLL_FBDIV_4_5 = 5,
   parameter   NUM_OF_LANES = 1,
-  parameter   integer XCVR_TYPE = 2) (
+  parameter   XCVR_TYPE = 2) (
 
   // transceiver interface
 

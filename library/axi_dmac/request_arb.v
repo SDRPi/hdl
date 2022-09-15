@@ -431,7 +431,7 @@ util_axis_fifo #(
   .s_axis_aresetn(src_resetn),
   .s_axis_valid(src_bl_valid),
   .s_axis_ready(src_bl_ready),
-  .s_axis_full(),
+  .s_axis_empty(),
   .s_axis_data(src_burst_length),
   .s_axis_room(),
 
@@ -440,8 +440,7 @@ util_axis_fifo #(
   .m_axis_valid(dest_bl_valid),
   .m_axis_ready(dest_bl_ready),
   .m_axis_data(dest_src_burst_length),
-  .m_axis_level(),
-  .m_axis_empty()
+  .m_axis_level()
 );
 
 // Adapt burst length from source width to destination width by either
@@ -768,7 +767,7 @@ util_axis_fifo #(
   .s_axis_aresetn(src_resetn),
   .s_axis_valid(rewind_req_valid),
   .s_axis_ready(rewind_req_ready),
-  .s_axis_full(),
+  .s_axis_empty(),
   .s_axis_data(rewind_req_data),
   .s_axis_room(),
 
@@ -777,8 +776,7 @@ util_axis_fifo #(
   .m_axis_valid(req_rewind_req_valid),
   .m_axis_ready(req_rewind_req_ready),
   .m_axis_data(req_rewind_req_data),
-  .m_axis_level(),
-  .m_axis_empty()
+  .m_axis_level()
 );
 
 end else begin
@@ -1030,7 +1028,7 @@ util_axis_fifo #(
   .s_axis_aresetn(src_resetn),
   .s_axis_valid(src_dest_valid_hs_masked),
   .s_axis_ready(src_dest_ready_hs),
-  .s_axis_full(),
+  .s_axis_empty(),
   .s_axis_data({
     src_req_dest_address_cur,
     src_req_xlast_cur
@@ -1045,8 +1043,7 @@ util_axis_fifo #(
     dest_req_dest_address,
     dest_req_xlast
   }),
-  .m_axis_level(),
-  .m_axis_empty()
+  .m_axis_level()
 );
 
 util_axis_fifo #(
@@ -1058,7 +1055,7 @@ util_axis_fifo #(
   .s_axis_aresetn(req_resetn),
   .s_axis_valid(req_src_valid),
   .s_axis_ready(req_src_ready),
-  .s_axis_full(),
+  .s_axis_empty(),
   .s_axis_data({
     req_dest_address,
     req_src_address,
@@ -1080,8 +1077,7 @@ util_axis_fifo #(
     src_req_sync_transfer_start,
     src_req_xlast
   }),
-  .m_axis_level(),
-  .m_axis_empty()
+  .m_axis_level()
 );
 
 // Save the descriptor in the source clock domain since the submission to

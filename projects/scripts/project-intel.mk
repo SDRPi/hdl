@@ -1,6 +1,5 @@
 ####################################################################################
-## Copyright (c) 2020 - 2021 Analog Devices, Inc.
-## SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ####################################################################################
 
 # Assumes this file is in projects/scripts/project-intel.mk

@@ -1,13 +1,12 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-### SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ## Auto-generated, do not modify!
 ####################################################################################
 
 PROJECT_NAME := adrv9371x_a10gx
 
 M_DEPS += ../common/adrv9371x_qsys.tcl
-M_DEPS += ../../scripts/adi_pd.tcl
+M_DEPS += ../../scripts/adi_pd_intel.tcl
 M_DEPS += ../../common/intel/dacfifo_qsys.tcl
 M_DEPS += ../../common/a10gx/a10gx_system_qsys.tcl
 M_DEPS += ../../common/a10gx/a10gx_system_assign.tcl

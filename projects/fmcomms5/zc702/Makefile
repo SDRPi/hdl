@@ -1,13 +1,11 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-### SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ## Auto-generated, do not modify!
 ####################################################################################
 
 PROJECT_NAME := fmcomms5_zc702
 
 M_DEPS += ../common/fmcomms5_bd.tcl
-M_DEPS += ../../scripts/adi_pd.tcl
 M_DEPS += ../../common/zc702/zc702_system_constr.xdc
 M_DEPS += ../../common/zc702/zc702_system_bd.tcl
 M_DEPS += ../../../library/common/ad_iobuf.v

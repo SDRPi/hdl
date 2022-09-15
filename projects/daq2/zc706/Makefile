@@ -1,6 +1,5 @@
 ####################################################################################
-## Copyright (c) 2018 - 2021 Analog Devices, Inc.
-### SPDX short identifier: BSD-1-Clause
+## Copyright 2018(c) Analog Devices, Inc.
 ## Auto-generated, do not modify!
 ####################################################################################
 
@@ -8,7 +7,6 @@ PROJECT_NAME := daq2_zc706
 
 M_DEPS += ../common/daq2_spi.v
 M_DEPS += ../common/daq2_bd.tcl
-M_DEPS += ../../scripts/adi_pd.tcl
 M_DEPS += ../../common/zc706/zc706_system_constr.xdc
 M_DEPS += ../../common/zc706/zc706_system_bd.tcl
 M_DEPS += ../../common/zc706/zc706_plddr3_constr.xdc
@@ -35,8 +33,5 @@ LIB_DEPS += util_pack/util_upack2
 LIB_DEPS += xilinx/axi_adcfifo
 LIB_DEPS += xilinx/axi_adxcvr
 LIB_DEPS += xilinx/util_adxcvr
-LIB_DEPS += util_axis_fifo_asym
-LIB_DEPS += data_offload
-LIB_DEPS += util_fifo2axi_bridge
 
 include ../../scripts/project-xilinx.mk

@@ -1,7 +1,6 @@
 
 source ../common/adrv9364z7020_bd.tcl
 source ../common/ccbob_bd.tcl
-source $ad_hdl_dir/projects/scripts/adi_pd.tcl
 
 cfg_ad9361_interface LVDS
 

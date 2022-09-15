@@ -64,8 +64,6 @@ module adrv9001_rx #(
   output      [7:0]       adc_data_strobe,
   output                  adc_valid,
 
-  output     [31:0]       adc_clk_ratio,
-
   // delay interface (for IDELAY macros)
   input                             up_clk,
   input   [NUM_LANES-1:0]           up_adc_dld,
@@ -199,27 +197,9 @@ module adrv9001_rx #(
       .CLR (mssi_sync),
       .CE (1'b1),
       .I (clk_in_s),
-      .O (adc_clk_div_s));
-    /*
-    BUFG I_bufg (
-      .I (adc_clk_div_s),
-      .O (adc_clk_div)
-    );
-    */
-    assign adc_clk_div = adc_clk_div_s;
+      .O (adc_clk_div));
 
-    xpm_cdc_async_rst
-    # (
-       .DEST_SYNC_FF    (10), // DECIMAL; range: 2-10
-       .INIT_SYNC_FF    ( 0), // DECIMAL; 0=disable simulation init values, 1=enable simulation init values
-       .RST_ACTIVE_HIGH ( 1)  // DECIMAL; 0=active low reset, 1=active high reset
-      )
-    rst_syncro
-    (
-     .src_arst (mssi_sync  ),
-     .dest_clk (adc_clk_div),
-     .dest_arst(ssi_rst    )
-    );
+    assign ssi_rst = mssi_sync;
 
   end else begin
     wire adc_clk_in;
@@ -285,7 +265,6 @@ module adrv9001_rx #(
   endgenerate
 
   assign adc_clk = adc_clk_in_fast;
-  assign adc_valid = ~adc_rst;
-  assign adc_clk_ratio = 4;
+  assign adc_valid = 1'b1;
 
 endmodule

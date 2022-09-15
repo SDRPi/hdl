@@ -108,7 +108,6 @@ module cpack_tb;
     end
   end
 
-  integer i;
   integer j;
   integer h;
 
@@ -136,6 +135,8 @@ module cpack_tb;
       end
     end
   end
+
+  integer i;
 
   always @(posedge clk) begin
     if (reset == 1'b1) begin

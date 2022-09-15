@@ -45,14 +45,12 @@
 `timescale 1ns/100ps
 
 module jesd204_up_sysref #(
-  parameter DATA_PATH_WIDTH_LOG2 = 2
+  parameter DATA_PATH_WIDTH = 2
 ) (
   input up_clk,
   input up_reset,
 
   input core_clk,
-
-  input device_clk,
 
   input [11:0] up_raddr,
   output reg [31:0] up_rdata,
@@ -67,8 +65,8 @@ module jesd204_up_sysref #(
   output reg [7:0] up_cfg_lmfc_offset,
   output reg up_cfg_sysref_disable,
 
-  input device_event_sysref_alignment_error,
-  input device_event_sysref_edge
+  input core_event_sysref_alignment_error,
+  input core_event_sysref_edge
 );
 
 reg [1:0] up_sysref_status;
@@ -78,10 +76,10 @@ wire [1:0] up_sysref_event;
 sync_event #(
   .NUM_OF_EVENTS(2)
 ) i_cdc_sysref_event (
-  .in_clk(device_clk),
+  .in_clk(core_clk),
   .in_event({
-    device_event_sysref_alignment_error,
-    device_event_sysref_edge
+    core_event_sysref_alignment_error,
+    core_event_sysref_edge
   }),
   .out_clk(up_clk),
   .out_event(up_sysref_event)
@@ -129,8 +127,8 @@ always @(posedge up_clk) begin
       up_cfg_sysref_disable <= up_wdata[0];
     end
     12'h041: begin
-      /* Must be aligned to data path width */
-      up_cfg_lmfc_offset <= up_wdata;
+      /* Aligned to data path width */
+      up_cfg_lmfc_offset <= up_wdata[9:DATA_PATH_WIDTH];
     end
     endcase
   end
