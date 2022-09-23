@@ -1,7 +1,7 @@
 // ***************************************************************************
 // ***************************************************************************
 // Copyright 2014 - 2017 (c) Analog Devices, Inc. All rights reserved.
-//
+//   
 // In this HDL repository, there are many different and unique modules, consisting
 // of various HDL (Verilog or VHDL) components. The individual modules are
 // developed independently, and may be accompanied by separate and unique license
