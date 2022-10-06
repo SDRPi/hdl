@@ -83,12 +83,12 @@ module system_top (
   output          spi_clk , 
   output          spi_mosi , 
   input           spi_miso ,
-  output          tx1_en , tx2_en , sel_clk_src
+  output         rx2_led,rx1_led, tx1_en , tx2_en , sel_clk_src
   
   );
 
-
-assign {tx1_en,tx2_en,sel_clk_src} = 3'b111  ;
+  assign {rx1_led,rx2_led} = 2'b10 ;
+  assign {tx1_en,tx2_en,sel_clk_src} = 3'b101  ;
 
   wire          pl_spi_clk_o ;
   wire          pl_spi_mosi ;
