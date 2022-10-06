@@ -179,6 +179,9 @@ set_input_jitter clk_fpga_0 0.3
 set_input_jitter clk_fpga_1 0.15
 
 
+set_property -dict {PACKAGE_PIN a20 IOSTANDARD LVCMOS18} [get_ports rx1_led]
+set_property -dict {PACKAGE_PIN b19 IOSTANDARD LVCMOS18} [get_ports rx2_led]
+
 set_property -dict {PACKAGE_PIN B20 IOSTANDARD LVCMOS18} [get_ports tx1_en]
 set_property -dict {PACKAGE_PIN C20 IOSTANDARD LVCMOS18} [get_ports tx2_en]
 set_property -dict {PACKAGE_PIN E19 IOSTANDARD LVCMOS18} [get_ports sel_clk_src]
